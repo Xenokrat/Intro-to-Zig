@@ -15,7 +15,9 @@ pub fn build(b: *std.Build) void {
         .root_module = exe_mod,
     });
     exe.linkLibC();
+    exe.linkSystemLibrary("m");
     exe.linkSystemLibrary("spng");
+    exe.addLibraryPath(.{ .cwd_relative = "/usr/local/lib/" });
 
     b.installArtifact(exe);
 
